@@ -1,0 +1,9 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+echo $((10*1024*1024)) > /sys/block/zram0/disksize
+mkswap /dev/zram0
+swapon /dev/zram0
+
+exit 0
+

@@ -1,0 +1,90 @@
+
+config system
+	option conloglevel '8'
+	option cronloglevel '8'
+	option hostname 'tuxLab'
+	option zonename 'Asia/Dhaka'
+	option timezone 'BDT-6'
+
+config timeserver 'ntp'
+	list server '0.openwrt.pool.ntp.org'
+	list server '1.openwrt.pool.ntp.org'
+	list server '2.openwrt.pool.ntp.org'
+	list server '3.openwrt.pool.ntp.org'
+
+config led 'led_usb'
+	option name 'USB'
+	option sysfs 'tp-link:green:3g'
+	option trigger 'usbdev'
+	option dev '1-1'
+	option interval '50'
+
+config button
+	option button 'reset'
+	option action 'released'
+	option handler 'firstboot && reboot'
+	option min '0'
+	option max '30'
+
+config button
+	option button 'wps'
+	option action 'released'
+	option handler '/usr/bin/wifionoff0'
+	option min '0'
+	option max '1'
+
+config button
+	option button 'wps'
+	option action 'released'
+	option handler 'reboot'
+	option min '1'
+	option max '4'
+
+config button
+	option button 'wps'
+	option action 'released'
+	option handler '/usr/bin/wifionoff1'
+	option min '4'
+	option max '30'
+
+config led
+	option name 'qss'
+	option sysfs 'tl-mr3x20:green:qss'
+	option trigger 'none'
+
+config led 'led_wan'
+	option name 'WAN'
+	option sysfs 'tp-link:green:wan'
+	option trigger 'netdev'
+	option dev 'eth0'
+	option mode 'link tx rx'
+
+config led 'led_lan1'
+	option name 'LAN1'
+	option sysfs 'tp-link:green:lan1'
+	option trigger 'switch0'
+	option port_mask '0x04'
+
+config led 'led_lan2'
+	option name 'LAN2'
+	option sysfs 'tp-link:green:lan2'
+	option trigger 'switch0'
+	option port_mask '0x08'
+
+config led 'led_lan3'
+	option name 'LAN3'
+	option sysfs 'tp-link:green:lan3'
+	option trigger 'switch0'
+	option port_mask '0x10'
+
+config led 'led_lan4'
+	option name 'LAN4'
+	option sysfs 'tp-link:green:lan4'
+	option trigger 'switch0'
+	option port_mask '0x02'
+
+config led 'led_wlan'
+	option name 'WLAN'
+	option sysfs 'tp-link:green:wlan'
+	option trigger 'phy0tpt'
+

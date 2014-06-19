@@ -1,0 +1,58 @@
+
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config interface 'lan'
+	option ifname 'eth1'
+	option type 'bridge'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option dns '192.168.1.1 8.8.8.8 8.8.4.4'
+
+config interface '3g'
+	option proto '3g'
+	option device '/dev/ttyUSB0'
+	option service 'evdo'
+	option username 'smart'
+	option password 'smart'
+
+config switch
+	option name 'switch0'
+	option reset '1'
+	option enable_vlan '1'
+
+config switch_vlan
+	option device 'switch0'
+	option vlan '1'
+	option ports '0 1 2 3 4'
+
+config interface 'wan'
+	option proto 'dhcp'
+	option hostname 'tuxLab'
+	option reqopts 'staticroutes msstaticroutes'
+	option _orig_ifname 'eth0.1'
+	option _orig_bridge 'false'
+	option ifname 'eth0'
+
+config interface 'wan2'
+	option proto 'pppoe'
+	option username 'shadhin@smile.com.bd'
+	option password 'bluerain'
+	option service 'smilebd'
+	option _orig_ifname 'ppp0'
+	option _orig_bridge 'false'
+	option ifname 'eth0'
+
+config zone
+	option name 'wan'
+	option network 'wan wan2'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option masq '1'
+	option mtu_fix '1'
+

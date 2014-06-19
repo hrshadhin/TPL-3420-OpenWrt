@@ -1,0 +1,4 @@
+config 'wshaper' 'settings'
+	option 'network' 'wlan0-1'
+	option 'downlink' '160'
+	option 'uplink' '240'
